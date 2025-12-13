@@ -1,16 +1,29 @@
 # liberary
 
-A new Flutter project.
+A عملي of Mobile computer Subject
 
-## Getting Started
+## Team member:
+1- Ahmad Algohary
+2- Maher Rommany
+3- John Khalil
+4- Arsany Gorge
+5- Peter Emade
+6- Peter Eshak
 
-This project is a starting point for a Flutter application.
+## ده شرح مبسط لعمل المشروع
 
-A few resources to get you started if this is your first Flutter project:
+Hive: بنسجّل BookAdapter وبنفتح box اسمه booksBox. كل ما نضيف كتاب بنعمل box.add(book) — Hive يخزن الكتاب محلياً على الجهاز. بعد كده لما نفتح التطبيق تاني نقرأ كل القيم من الـ box ونعرضها.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Provider: BookProvider يحتوي على قائمة _books ويعرّضها عبر getter books. لما نعمل add/update/delete بنحدّث الـ box أول، وبعدين نستدعي loadBooksFromBox() يليعمل notifyListeners() عشان الشاشة تتحدث.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+CRUD:
+
+Create (Add): في AddBookScreen نجمّع بيانات النموذج وننادي provider.addBook(book).
+
+Read (Get): عند بداية التطبيق BookProvider.loadBooksFromBox() يجلب كل البيانات من Hive ويعرضها في BooksListScreen.
+
+Update: نبحث عن مفتاح العنصر داخل box بالمقارنة book.id وننفذ box.put(key, updatedBook).
+
+Delete: بنفس طريقة الـ update نبحث عن key وننفّذ box.delete(key).
+
+ID: لكل كتاب عند الإنشاء نعطيه DateTime.now().millisecondsSinceEpoch كـ id فريد.
