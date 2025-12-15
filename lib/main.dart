@@ -9,13 +9,8 @@ import 'screens/books_list_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // init Hive
   await Hive.initFlutter();
-
-  // register adapter
   Hive.registerAdapter(BookAdapter());
-
-  // open box
   await Hive.openBox<Book>('booksBox');
 
   runApp(const MyApp());
@@ -26,11 +21,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // provide the BookProvider app-wide
     return ChangeNotifierProvider(
       create: (_) => BookProvider()..loadBooksFromBox(),
       child: MaterialApp(
-        title: 'Books Hive Provider',
+        title: 'Liberary',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

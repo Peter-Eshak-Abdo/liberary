@@ -9,28 +9,22 @@ class BookProvider extends ChangeNotifier {
   List<Book> _books = [];
   List<Book> get books => _books;
 
-  // Load from Hive when app starts
   void loadBooksFromBox() {
     _books = _box.values.toList();
     notifyListeners();
   }
 
-  // Get (already provided by getter) but helper to refresh
   void refresh() {
     _books = _box.values.toList();
     notifyListeners();
   }
 
-  // Add
   Future<void> addBook(Book book) async {
-    // key will be auto index, but we save Book as value containing its id
     await _box.add(book);
     loadBooksFromBox();
   }
 
-  // Update: find Hive index of the old book and replace it
   Future<void> updateBook(Book updatedBook) async {
-    // find the key (index) of book with matching id
     final key = _box.keys.firstWhere(
           (k) {
         final b = _box.get(k) as Book;
@@ -45,7 +39,6 @@ class BookProvider extends ChangeNotifier {
     }
   }
 
-  // Delete
   Future<void> deleteBook(int bookId) async {
     final key = _box.keys.firstWhere(
           (k) {

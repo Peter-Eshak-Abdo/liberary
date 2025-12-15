@@ -1,9 +1,7 @@
 import 'package:hive/hive.dart';
 
-// part 'book_model.g.dart'; // optional but harmless; we won't use codegen
-
 class Book {
-  int id; // نستخدم timestamp كـ id
+  int id;
   String title;
   String author;
   int pages;
@@ -18,10 +16,9 @@ class Book {
   });
 }
 
-// Manual TypeAdapter for Book
 class BookAdapter extends TypeAdapter<Book> {
   @override
-  final int typeId = 0; // لا تغيّر الرقم بعد ما تنشر بيانات
+  final int typeId = 0;
 
   @override
   Book read(BinaryReader reader) {
@@ -43,7 +40,7 @@ class BookAdapter extends TypeAdapter<Book> {
   @override
   void write(BinaryWriter writer, Book obj) {
     writer
-      ..writeByte(5) // عدد الحقول
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)

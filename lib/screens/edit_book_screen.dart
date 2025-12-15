@@ -74,7 +74,7 @@ class _EditBookScreenState extends State<EditBookScreen> {
                   if (_formKey.currentState?.validate() ?? false) {
                     _formKey.currentState?.save();
                     final updated = Book(
-                      id: widget.book.id, // important: keep same id
+                      id: widget.book.id,
                       title: title,
                       author: author,
                       pages: pages,
